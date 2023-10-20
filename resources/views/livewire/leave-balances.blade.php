@@ -157,7 +157,7 @@
 </head>
 <body>
     <div class="buttons-container">
-        <button class="button1" id="leave-apply-link" onclick="changePageTitle5('apply')"><a href="/leave-page" style="text-decoration:">Apply</a></button>
+        <button class="button1">Apply</button>
         <button class="button2">Download</button>
         <select class="dropdown">
             <option value="2022">2022</option>
