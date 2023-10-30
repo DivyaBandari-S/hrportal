@@ -267,7 +267,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle5('calendar')">
-                                        <a class="nav-link" href="/leave-calendar" id="slip" onclick="selectOption(this, 'Leave Calender')">
+                                        <a class="nav-link" href="  /view-pending-details" id="slip" onclick="selectOption(this, 'Leave Calender')">
                                             Leave Calendar
                                         </a>
                                     </li>
@@ -293,38 +293,28 @@
                             </a>
 
                         </li>
-                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12(item)">
+                        <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11(item)">
                             <a class="nav-link" href="#" onclick="toggleSalaryDropdown()">
                                 <i class="fas fa-solid fa-money-bill-transfer" id="salary-icon"></i> Salary <i class="fas fa-caret-down" id="salary-caret"></i>
                             </a>
                             <div id="salary-options" style="display: none;">
                                 <ul style="list-style: none;  margin-left:10px; cursor:pointer;">
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle12('itdeclaration')">
-                                        <a class="nav-link" href="/formdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration')">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('itdeclaration')">
+                                        <a class="nav-link" href="/itdeclaration" id="itdeclaration" onclick="selectOption(this, 'IT Declaration')">
                                             IT Declaration
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle13('itstatement')">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('itstatement')">
                                         <a class="nav-link" href="/itstatement" id="itstatement" onclick="selectOption(this, 'IT Statement')">
                                             IT Statement
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('slip')">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('slip')">
                                         <a class="nav-link" href="/slip" id="slip" onclick="selectOption(this, 'Pay Slip')">
                                             Payslips
                                         </a>
                                     </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('proofofinvestment')">
-                                        <a class="nav-link" href="/proofofinvestment" id="proofofinvestment" onclick="selectOption(this,   Proof Of Investment')">
-                                            Proof Of Investment
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle14('loan')">
-                                        <a class="nav-link" href="/loan" id="slip" onclick="selectOption(this, 'Loan and Advances')">
-                                            Loan and Advances
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle15('salary-revision')">
+                                    <li class="nav-item" style="text-decoration: none;" onclick="changePageTitle11('salary-revision')">
                                         <a class="nav-link" href="/salary-revision" id="slip" onclick="selectOption(this, 'Salary Revision')">
                                             Salary Revision
                                         </a>

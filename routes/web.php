@@ -36,16 +36,15 @@ use App\Livewire\Documents;
 use App\Livewire\Documentcenter;
 
 use App\Livewire\LeaveApply;
-
+use App\Livewire\LeaveTransctionPdf;
 use App\Livewire\LeavePage;
-
+use App\Livewire\LeavePending;
 use App\Livewire\LeaveBalances;
 use App\Livewire\LeaveCalendar;
 use App\Livewire\HolidayCalender;
 use App\Livewire\LeaveHistory;
-use App\Livewire\ViewDetails;
+use App\Livewire\ViewPendingDetails;
 
-use App\Livewire\LeaveCalender;
 
 use Illuminate\Support\Facades\Route;
 
@@ -143,23 +142,18 @@ Route::middleware(['auth:emp'])->group(function () {
 
  
 
-    Route::get('/leave-page', LeavePage::class)->name('leave-page');
 
-    Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
 
     Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
-
+    Route::get('/leave-page', LeavePage::class)->name('leave-page');
+    Route::get('/leave-pending/{leaveRequestId}', LeavePending::class)->name('leave-pending');
+    Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
     Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
     Route::get('/leave-calendar', LeaveCalendar::class)->name('leave-calendar');
+    Route::get('/view-pending-details', ViewPendingDetails::class)->name('view-pending-details');
+    Route::get('/leave-transction-pdf', LeaveTransctionPdf::class)->name('leave-transction-pdf');
     Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
-
-    Route::get('/leave-page', LeavePage::class)->name('leave-page');
-
-    Route::get('/leave-apply', LeaveApply::class)->name('leave-apply');
-
-    Route::get('/holiday-calender', HolidayCalender::class)->name('holiday-calender');
-    Route::get('/leave-balances', LeaveBalances::class)->name('leave-balances');
-    Route::get('/salary-revision', SalaryRevisions::class)->name('salary-revision');
+  
 
 });
 

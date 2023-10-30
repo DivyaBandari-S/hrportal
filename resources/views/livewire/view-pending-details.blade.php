@@ -117,7 +117,7 @@
 
                                     @if($numberOfDays == 1)
                                         <p style=" color:#778899; font-size:0.69rem;">Fullday</p>
-                                    @elseif($numberOfDays == 0)
+                                    @elseif($numberOfDays == 0.5)
                                         <p style=" color:#778899; font-size:0.69rem;">Halfday</p>
                                     @else
                                         <span style="color: #36454F; font-size: 0.675rem; font-weight: 400;">{{ $numberOfDays }} days</span>
@@ -165,7 +165,7 @@
     @else
         <div class="leave-pending" style="margin-top:30px; background:#fff; margin-left:120px; display:flex; width:75%;flex-direction:column; text-align:center;justify-content:center; border:1px solid #ccc; padding:20px;gap:10px;">
             <img src="/images/pending.png" alt="Pending Image" style="width:60%; margin:0 auto;">
-            <p style="color:#969ea9; font-size:13px; font-weight:400; ">There are no pending records of any leave transaction</p>
+            <p style="color:#969ea9; font-size:13px; font-weight:400; ">There are no pending records of any leave transaction to Review</p>
         </div>
     @endif
 </div>

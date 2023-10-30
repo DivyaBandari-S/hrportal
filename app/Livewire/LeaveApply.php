@@ -138,8 +138,8 @@ class LeaveApply extends Component
             $ccToDetails[] = [
                 'emp_id' => $selectedEmployeeId,
                 'full_name' => $fullName,
-                'image' => $employeeDetails->image,  
             ];
+            
         }
 
         $employeeId = auth()->guard('emp')->user()->emp_id;
@@ -170,16 +170,11 @@ class LeaveApply extends Component
             'contact_details' => $this->contact_details,
             'reason' => $this->reason,
         ]);
-
         $this->reset();
-        if (session()->has('message')) {
-            $this->emit('showAlert', ['type' => 'Leave application submitted successfully!', 'message' => session('message')]);
-        }
-        return redirect()->route('/leave-page');
+        session()->flash('message', 'Leave application submitted successfully!');
+        return redirect()->to('/leave-page');
     }
-      public function submit(){
-    $this->leaveApply();
-}
+
     public function render()
     {
         return view('livewire.leave-apply');

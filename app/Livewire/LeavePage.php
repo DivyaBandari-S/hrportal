@@ -16,21 +16,35 @@ class LeavePage extends Component
     public $leaveRequests;
 
     public function mount()
-    {
-        // Get the logged-in user's ID
-        $employeeId = auth()->guard('emp')->user()->emp_id;
-    
-        // Fetch all leave requests (pending, approved, rejected) for the logged-in user
-        $this->leaveRequests = LeaveRequest::where('emp_id', $employeeId)
-            ->whereIn('status', ['approved', 'rejected'])
-            ->orderBy('created_at', 'desc')
-            ->get();
-        $this->leavePending = LeaveRequest::where('emp_id', $employeeId)
-            ->where('status', 'pending')
-            ->orderBy('created_at', 'desc')
-            ->get();
+{
+    // Get the logged-in user's ID and company ID
+    $employeeId = auth()->guard('emp')->user()->emp_id;
+    // Fetch all leave requests (pending, approved, rejected) for the logged-in user and company
+    $this->leaveRequests = LeaveRequest::where('emp_id', $employeeId)
+        ->whereIn('status', ['approved', 'rejected'])
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    // Fetch pending leave requests for the logged-in user and company
+    $this->leavePending = LeaveRequest::where('emp_id', $employeeId)
+        ->where('status', 'pending')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    // Format the date properties
+    foreach ($this->leaveRequests as $leaveRequest) {
+        $leaveRequest->formatted_from_date = Carbon::parse($leaveRequest->from_date)->format('d-m-Y');
+        $leaveRequest->formatted_to_date = Carbon::parse($leaveRequest->to_date)->format('d-m-Y');
+        // Add other formatted date properties as needed
     }
-    
+
+    foreach ($this->leavePending as $leaveRequest) {
+        $leaveRequest->formatted_from_date = Carbon::parse($leaveRequest->from_date)->format('d-m-Y');
+        $leaveRequest->formatted_to_date = Carbon::parse($leaveRequest->to_date)->format('d-m-Y');
+        // Add other formatted date properties as needed
+    }
+}
+
     
     public function hasPendingLeave()
     {
@@ -38,13 +52,24 @@ class LeavePage extends Component
         return $this->leaveRequests->where('status', 'pending')->isNotEmpty();
     }
 
-        public function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
+        public  function calculateNumberOfDays($fromDate, $fromSession, $toDate, $toSession)
         {
             try {
                 $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $fromDate . ' 00:00:00');
                 $endDate = Carbon::createFromFormat('Y-m-d H:i:s', $toDate . ' 00:00:00');
-
                 // Check if the start and end sessions are different on the same day
+                if (
+                    $startDate->isSameDay($endDate) &&
+                    $this->getSessionNumber($fromSession) === $this->getSessionNumber($toSession)
+                ) {
+                    // Inner condition to check if both start and end dates are weekdays
+                    if (!$startDate->isWeekend() && !$endDate->isWeekend()) {
+                        return 0.5;
+                    } else {
+                        // If either start or end date is a weekend, return 0
+                        return 0;
+                    }
+                }
                 if (
                     $startDate->isSameDay($endDate) &&
                     $this->getSessionNumber($fromSession) !== $this->getSessionNumber($toSession)
@@ -100,8 +125,6 @@ class LeavePage extends Component
             }
         }
 
-
-    
     
         private function getSessionNumber($session)
         {
@@ -114,4 +137,5 @@ class LeavePage extends Component
     {
         return view('livewire.leave-page');
     }
+    
 }

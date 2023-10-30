@@ -61,7 +61,7 @@ class LeaveHelper
                 $totalDays += (self::getSessionNumber($toSession) - self::getSessionNumber($fromSession) + 1) * 0.5;
             }
 
-            return $totalDays;
+            return (float) $totalDays;
 
         } catch (\Exception $e) {
             return 'Error: ' . $e->getMessage();
@@ -79,9 +79,8 @@ class LeaveHelper
         // Fetch approved leave requests
         $approvedLeaveRequests = LeaveRequest::where('emp_id', $employeeId)
             ->where('status', 'approved')
-            ->whereIn('leave_type', ['Causal Leave Prohabation', 'Sick Leave', 'Loss Of Pay'])
+            ->whereIn('leave_type', ['Causal Leave Probation', 'Sick Leave', 'Loss Of Pay'])
             ->get();
-    
         $totalCausalDays = 0;
         $totalSickDays = 0;
         $totalLossOfPayDays = 0;
@@ -95,9 +94,8 @@ class LeaveHelper
                 $leaveRequest->to_date,
                 $leaveRequest->to_session
             );
-    
             // Accumulate days based on leave type
-            if ($leaveType === 'Causal Leave Prohabation') {
+            if ($leaveType === 'Causal Leave Probation') {
                 $totalCausalDays += $days;
             } elseif ($leaveType === 'Sick Leave') {
                 $totalSickDays += $days;
